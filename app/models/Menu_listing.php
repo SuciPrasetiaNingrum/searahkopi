@@ -28,7 +28,7 @@ class Menu_listing
 
     public function getAllOrderedItems()
     {
-        $this->db->query('SELECT COUNT(*) AS jumlah, k.id, m.nama_menu, m.harga, k.amount FROM ordered k JOIN menu m ON k.id_menu = m.id');
+        $this->db->query('SELECT COUNT(*) AS jumlah, k.id, m.nama_menu, m.harga, k.amount FROM ordered k JOIN menu m ON k.id_menu = m.id GROUP BY id_menu');
         return $this->db->resultSet();
     }
 }

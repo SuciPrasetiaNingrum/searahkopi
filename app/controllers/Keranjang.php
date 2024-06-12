@@ -17,7 +17,6 @@ class Keranjang extends Controller
         }
     }
 
-
     public function index()
     {
         $data['lists'] = $this->model('Menu_listing')->getAllOrderedItems();
