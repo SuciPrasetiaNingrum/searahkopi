@@ -11,144 +11,150 @@
 </head>
 <body>
 
-    <!-- Navbar-->
-    <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+   <!-- Navbar-->
+ <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
         <div class="container">
             <a class="navbar-brand me-auto fw-semibold fs-1" href="#"><span class="text-primary"> Searah </span>Coffee</a>
             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-                
+
                 <!--Logo Off Canvas-->
                 <div class="offcanvas-header">
                     <h5 class="offcanvas-title" id="offcanvasNavbarLabel"><span class="text-primary"> Searah </span>Coffee</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
-                
+
                 <!--Navbar Tengah-->
                 <nav id="navbar-scroll" class="navbar navbar-expand-lg fixed-top navbar-light bg-body-tertiary px-3 justify-content-center" data-bs-spy="scroll" data-bs-target="#navbarNav" data-bs-offset="0" style="position: sticky; top: 0;">
                     <ul class="nav nav-pills">
                         <li class="nav-item">
-                            <a class="nav-link" href="#home">Home</a>
+                            <a class="nav-link" href="<?= BASEURL ?>/home/">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#menu">Menu</a>
+                            <a class="nav-link" href="<?= BASEURL ?>/home/">Menu</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?=BASEURL?>/favorite/">Favorite</a>
+                            <a class="nav-link" href="<?= BASEURL ?>/favorite/">Favorite</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?=BASEURL?>/keranjang/">Keranjang</a>
+                            <a class="nav-link" href="<?= BASEURL ?>/keranjang/">Keranjang</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#location">Location</a>
                         </li>
-                    </ul>   
+                    </ul>
                 </nav>
             </div>
-            <?php if(!isset($_SESSION['user'])):?>
+            <?php if (!isset($_SESSION['user'])) : ?>
                 <div class="dropdown">
                     <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Login
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a href="<?=BASEURL?>/login/" class="dropdown-item">Login</a></li>
-                        <li><a href="<?=BASEURL?>/register/" class="dropdown-item">Register</a></li>
+                        <li><a href="<?= BASEURL ?>/login/" class="dropdown-item">Login</a></li>
+                        <li><a href="<?= BASEURL ?>/register/" class="dropdown-item">Register</a></li>
                     </ul>
                 </div>
-            <?php else:?>
+            <?php else : ?>
                 <div class="dropdown">
-            <a class="btn btn-primary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <?=$_SESSION['user']['name']?>
-            </a>
+                    <a class="btn btn-primary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <?= $_SESSION['user']['name'] ?>
+                    </a>
 
-            <ul class="dropdown-menu">
-            <?php if($_SESSION['user']['is_owner'] == 1):?>
-                <li><a class="dropdown-item" href="">Dashboard</a></li>
-                <?php endif?>
-                <li><a class="dropdown-item" href="<?=BASEURL?>logout/">Logout</a></li>
-               
-            </ul>
-            </div>
-            <?php endif?>
+                    <ul class="dropdown-menu">
+                        <?php if ($_SESSION['user']['is_owner'] == 1) : ?>
+                            <li><a class="dropdown-item" href="">Dashboard</a></li>
+                        <?php endif ?>
+                        <li><a class="dropdown-item" href="<?= BASEURL ?>logout/">Logout</a></li>
+
+                    </ul>
+                </div>
+            <?php endif ?>
 
 
 
             <!--Garis Tiga-->
-            <button class="navbar-toggler pe-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
-                aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+            <button class="navbar-toggler pe-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
         </div>
     </nav>
 
-    <!-- Start Keranjang -->
-    <div class="container mt-7">
-        <div class="row">
-            <div>
-                <div class="row">
-                    <div class="col"></div>
+<!-- Start Keranjang -->
+<div class="container mt-7">
+    <div class="row">
+        <div class="col">
+            <?php if (empty($data['lists'])) : ?>
+                <div class="alert alert-warning" role="alert">
+                    Keranjang belanja Anda kosong.
                 </div>
-            </div>
-
-            <div class="col">
+            <?php else : ?>
                 <table class="table">
                     <thead>
-                      <tr>
-                        <th scope="col">Hapus</th>
-                        <th scope="col">Nama Coffe</th>
-                        <th scope="col">Gambar</th>
-                        <th scope="col">Harga</th>
-                        <th scope="col">Jumlah</th>
-                        <th scope="col">Sub Total</th>
-                      </tr>
+                        <tr>
+                            <th scope="col">Hapus</th>
+                            <th scope="col">Nama Coffee</th>
+                            <th scope="col">Gambar</th>
+                            <th scope="col">Harga</th>
+                            <th scope="col">Jumlah</th>
+                            <th scope="col">Sub Total</th>
+                        </tr>
                     </thead>
-
                     <?php $totalKeseluruhan = 0; ?>
-                    <?php $count = 0; ?>
                     <?php foreach ($data['lists'] as $list) : ?>
-
                     <tbody class="align-middle">
-                      <tr>
-                        <th scope="row"><svg width="20"viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M10 11V17" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M14 11V17" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M4 7H20" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M6 7H12H18V18C18 19.6569 16.6569 21 15 21H9C7.34315 21 6 19.6569 6 18V7Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ></path> </g></svg>
-                        </th>
-                        <td><?= $list['nama_menu'] ?></td>
-                        <td><img src="<?=BASEURL?>/img/iklan-1.jpg" width="60"></td>
-                        <td>Rp.<?= number_format($list['harga'], 0, ',', '.') ?></td>
-                        <td>
-                            <button class="button btn-drak btn-sm">-<i class="fas fa-minus"></i>
-                            </button>
-                            <span class="mx-2"><?= $list['jumlah'] ?></span>
-                            <button class="button btn-warning btn-sm">+<i class="fas fa-plus text-white"></i>
-                            </button>
-                        </td>
-                        <td>Rp.<?= number_format($list['jumlah'] * $list['harga'], 0, ',', '.') ?></td>
-                      </tr>
+                        <tr>
+                            <th scope="row">
+                                <svg width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                    <g id="SVGRepo_iconCarrier">
+                                        <path d="M10 11V17" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                        <path d="M14 11V17" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                        <path d="M4 7H20" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                        <path d="M6 7H12H18V18C18 19.6569 16.6569 21 15 21H9C7.34315 21 6 19.6569 6 18V7Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                        <path d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    </g>
+                                </svg>
+                            </th>
+                            <td><?= htmlspecialchars($list['nama_menu'], ENT_QUOTES, 'UTF-8') ?></td>
+                            <td><img src="<?= htmlspecialchars(BASEURL, ENT_QUOTES, 'UTF-8') ?>/img/iklan-1.jpg" width="60"></td>
+                            <td>Rp.<?= number_format($list['harga'], 0, ',', '.') ?></td>
+                            <td>
+                                <button class="btn btn-dark btn-sm">-<i class="fas fa-minus"></i></button>
+                                <span class="mx-2"><?= $list['jumlah'] ?></span>
+                                <button class="btn btn-warning btn-sm">+<i class="fas fa-plus text-white"></i></button>
+                            </td>
+                            <td>Rp.<?= number_format($list['jumlah'] * $list['harga'], 0, ',', '.') ?></td>
+                        </tr>
                     </tbody>
-
                     <?php $totalKeseluruhan += $list['jumlah'] * $list['harga']; ?>
-                    <?php endforeach ?>
+                    <?php endforeach; ?>
                 </table>
-            </div>
+            <?php endif; ?>
         </div>
+    </div>
 
+    <?php if (!empty($data['lists'])) : ?>
         <!-- Total Harga -->
         <table class="table">
             <thead>
-              <tr>
-                <th scope="col" colspan="2">Total Keranjang Belanja</th>
-              </tr>
+                <tr>
+                    <th scope="col" colspan="2">Total Keranjang Belanja</th>
+                </tr>
             </thead>
             <tbody>
-              <tr>
-                <td class="fw-bold">Total Harga</td>
-                <td>Rp.<?= number_format($totalKeseluruhan, 0, ',', '.') ?></td>
-              </tr>
-              <tr>
-                <td><button class="btn btn-dark btn-sm">Checkout</button></td>
-              </tr>
-              <br>
+                <tr>
+                    <td class="fw-bold">Total Harga</td>
+                    <td>Rp.<?= number_format($totalKeseluruhan, 0, ',', '.') ?></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><button class="btn btn-dark btn-sm">Checkout</button></td>
+                </tr>
             </tbody>
-          </table>
-    </div>
+        </table>
+    <?php endif; ?>
+</div>
+
     
     <!-- End Keranjang-->
 
