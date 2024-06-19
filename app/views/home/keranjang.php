@@ -57,11 +57,11 @@
             <?php else : ?>
                 <div class="dropdown">
                     <a class="btn btn-primary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <?= $_SESSION['user']['name'] ?>
+                        <?=$data['userauth']['name'] ?>
                     </a>
 
                     <ul class="dropdown-menu">
-                        <?php if ($_SESSION['user']['is_owner'] == 1) : ?>
+                        <?php if ( $data['userauth']['is_owner']) : ?>
                             <li><a class="dropdown-item" href="">Dashboard</a></li>
                         <?php endif ?>
                         <li><a class="dropdown-item" href="<?= BASEURL ?>logout/">Logout</a></li>
@@ -78,10 +78,15 @@
             </button>
         </div>
     </nav>
+  
 
 <!-- Start Keranjang -->
 <div class="container mt-7">
     <div class="row">
+    <div class="flasher text-center">
+            <?php Flasher::flash()?>
+            </div>
+
         <div class="col">
             <?php if (empty($data['lists'])) : ?>
                 <div class="alert alert-warning" role="alert">
@@ -148,7 +153,11 @@
                     <td>Rp.<?= number_format($totalKeseluruhan, 0, ',', '.') ?></td>
                 </tr>
                 <tr>
-                    <td colspan="2"><button class="btn btn-dark btn-sm">Checkout</button></td>
+                    <form action="<?=BASEURL?>keranjang/addPayment" method="POST">
+                        <input type="hidden" name="user_id" value="<?= $data['userauth']['id']?>">
+                        <input type="hidden" name="amount" value="<?= $totalKeseluruhan ?>">
+                    <td colspan="2"><button type="submit" class="btn btn-dark btn-sm">Checkout</button></td>
+                    </form>
                 </tr>
             </tbody>
         </table>

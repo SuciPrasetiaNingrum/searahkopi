@@ -16,6 +16,7 @@ class Menu_listing
 
     public function addItem($data)
     {
+        //Query Uddate
         $this->db->query('INSERT INTO ordered (id_user, id_menu, amount) VALUES (:id_user, :id_menu, :amount)');
         $this->db->bind('id_user', $data['id_user']);
         $this->db->bind('id_menu', $data['id_menu']);
@@ -26,9 +27,35 @@ class Menu_listing
         return $this->db->rowCount();
     }
 
-    public function getAllOrderedItems()
+    public function getAllOrderedItemByUserID($id)
     {
-        $this->db->query('SELECT COUNT(*) AS jumlah, k.id, m.nama_menu, m.harga, k.amount FROM ordered k JOIN menu m ON k.id_menu = m.id GROUP BY id_menu');
+        $this->db->query('SELECT COUNT(*) AS jumlah, k.id, m.nama_menu, m.harga, k.amount FROM ordered k JOIN menu m ON k.id_menu = m.id WHERE id_user = :id GROUP BY id_menu');
+        $this->db->bind('id', $id);
+        $this->db->execute();
         return $this->db->resultSet();
     }
+
+    public function addPayment($data){
+
+        $this->db->query('INSERT INTO transaction (id_user,amount) VALUES (:id_user, :amount)');
+        $this->db->bind('id_user', $data['user_id']);
+        $this->db->bind('amount', $data['amount']);
+        $this->db->execute();
+        return $this->db->rowCount();
+    }
+
+    public function addFavorite($data){
+
+        $this->db->query('INSERT INTO favorite (id_user, id_menu) VALUES (:id_user, :id_menu)');
+        $this->db->bind('id_user', $data['id_user']);
+        $this->db->bind('id_menu', $data['id_menu']);
+        $this->db->execute();
+        return $this->db->rowCount();
+    }
+    public function getAllFavorite($id){
+        $this->db->query('SELECT favorite.*,menu.* FROM favorite JOIN menu ON menu.id = favorite.id_menu WHERE favorite.id_user =:id');
+        $this->db->bind('id', $id);
+        $this->db->execute();
+        return $this->db->resultSet();
+}
 }
