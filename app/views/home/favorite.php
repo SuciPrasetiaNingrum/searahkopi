@@ -132,6 +132,9 @@ foreach ($data['lists'] as $list):
                     <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modal<?= $list['id'] ?>">
                         More
                     </button>
+                    <button type="button" class="btn btn-danger btn-sm" onclick="deleteItem(<?= $list['id'] ?>)">
+                        Delete
+                    </button>
                 </form>
 
                 <meta charset="UTF-8">
@@ -242,5 +245,26 @@ $(document).ready(function() {
         });
     });
 });
+function deleteItem(id) {
+    if(confirm('Are you sure you want to delete this item?')) {
+        fetch('<?= BASEURL; ?>favorite/delete', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: 'id=' + id
+        })
+        .then(response => response.json())
+        .then(data => {
+            if(data.success) {
+                alert('Item deleted successfully');
+                location.reload(); // Reload the page to update the list
+            } else {
+                alert('Failed to delete the item');
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    }
+}
 </script>
 </html>

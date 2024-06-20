@@ -8,6 +8,7 @@
     <script src=" <?=BASEURL?>js/bootstrap.js"></script>
     <script src=" <?=BASEURL?>js/bootstrap.bundle.min.js"></script>
     <script src="<?=BASEURL?>/css/tiny-slider.css"></script>
+    <script src="<?=BASEURL?>/js/updateQuantity.js"></script>
 </head>
 <body>
 
@@ -104,11 +105,12 @@
                             <th scope="col">Sub Total</th>
                         </tr>
                     </thead>
+                    <tbody class="align-middle">
                     <?php $totalKeseluruhan = 0; ?>
                     <?php foreach ($data['lists'] as $list) : ?>
-                    <tbody class="align-middle">
                         <tr>
                             <th scope="row">
+                            <a href="<?= BASEURL ?>/keranjang/hapus/<?= $list['id'] ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus item ini?');">
                                 <svg width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                                     <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -125,9 +127,9 @@
                             <td><img src="<?= htmlspecialchars(BASEURL, ENT_QUOTES, 'UTF-8') ?>/img/iklan-1.jpg" width="60"></td>
                             <td>Rp.<?= number_format($list['harga'], 0, ',', '.') ?></td>
                             <td>
-                                <button class="btn btn-dark btn-sm">-<i class="fas fa-minus"></i></button>
-                                <span class="mx-2"><?= $list['jumlah'] ?></span>
-                                <button class="btn btn-warning btn-sm">+<i class="fas fa-plus text-white"></i></button>
+                                <button class="btn btn-dark btn-sm" onclick="updateQuantity('minus', <?= $list['id'] ?>)">-<i class="fas fa-minus"></i></button>
+                                <span class="mx-2" id="quantity_<?= $list['id'] ?>"><?= $list['jumlah'] ?></span>
+                                <button class="btn btn-warning btn-sm" onclick="updateQuantity('plus', <?= $list['id'] ?>)">+<i class="fas fa-plus text-white"></i></button>
                             </td>
                             <td>Rp.<?= number_format($list['jumlah'] * $list['harga'], 0, ',', '.') ?></td>
                         </tr>

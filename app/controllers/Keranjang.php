@@ -42,8 +42,12 @@ class Keranjang extends Controller
             }
         }
     }
-
-
-
-   
+    
+    public function hapusItem($id){
+        if($this->model('Menu_listing')->hapusItem($id) > 0){
+            Flasher::setFlash('Item berhasil ', 'dihapus', 'success');
+            header('location: ' . $_SERVER['HTTP_REFERER']);
+            exit;
+        }
+    }
 }
