@@ -57,5 +57,20 @@ class Menu_listing
         $this->db->bind('id', $id);
         $this->db->execute();
         return $this->db->resultSet();
-}
+    }
+
+    public function updateQuantity($id, $quantity) {
+        $this->db->query('UPDATE ordered SET amount = :quantity WHERE id = :id');
+        $this->db->bind('quantity', $quantity);
+        $this->db->bind('id', $id);
+        $this->db->execute();
+        return $this->db->rowCount();
+    }
+
+    public function deleteFavorite($id){
+        $this->db->query('DELETE FROM favorite WHERE id = :id');
+        $this->db->bind('id', $id);
+        $this->db->execute();
+        return $this->db->rowCount();
+    }
 }
