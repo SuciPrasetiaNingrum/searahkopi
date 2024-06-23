@@ -15,7 +15,7 @@ class Favorite extends Controller{
     public function delete(){
         // Cek apakah user sudah login
         if (isset($_SESSION['user'])) {
-            $rowCount = $this->model('Menu_listing')->deleteFavorite($_POST['id']);
+            $rowCount = $this->model('Menu_listing')->deleteFavorite($_POST);
             if ($rowCount > 0) {
                 Flasher::setFlash('Item favorit ', 'dihapus', 'success');
                 header('location: ' . $_SERVER['HTTP_REFERER']);

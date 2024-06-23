@@ -53,7 +53,7 @@ class Menu_listing
         return $this->db->rowCount();
     }
     public function getAllFavorite($id){
-        $this->db->query('SELECT favorite.*,menu.* FROM favorite JOIN menu ON menu.id = favorite.id_menu WHERE favorite.id_user =:id');
+        $this->db->query('SELECT favorite.*,menu.nama_menu,menu.harga,menu.description FROM favorite JOIN menu ON menu.id = favorite.id_menu WHERE favorite.id_user =:id');
         $this->db->bind('id', $id);
         $this->db->execute();
         return $this->db->resultSet();
@@ -67,9 +67,10 @@ class Menu_listing
         return $this->db->rowCount();
     }
 
-    public function deleteFavorite($id){
-        $this->db->query('DELETE FROM favorite WHERE id = :id');
-        $this->db->bind('id', $id);
+    public function deleteFavorite($data){
+        $this->db->query('DELETE FROM favorite WHERE id = :id AND id_user =:id_user');
+        $this->db->bind('id', $data['id']);
+        $this->db->bind('id_user', $data['user_id']);
         $this->db->execute();
         return $this->db->rowCount();
     }
