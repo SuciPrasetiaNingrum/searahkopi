@@ -2,10 +2,12 @@
 class Favorite extends Controller{
     public function index(){
         if(isset($_SESSION['user'])){
-            $data['judul'] = 'FAVORITE | Searah Kopi';
+            $data['judul'] = 'Favorite';
             $data['userauth'] = $_SESSION['user'];
             $data['lists'] = $this->model('Menu_listing')->getAllFavorite($data['userauth']['id']);
+            $this->view('components/navbar', $data);
             $this->view('home/favorite', $data);
+            $this->view('components/footer', $data);
         }else{
             header('location: ' . BASEURL . 'login');
         }

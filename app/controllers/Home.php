@@ -4,8 +4,9 @@ class Home extends Controller{
         $data['lists'] = $this->model('Menu_listing')->getAllList();
         $data['userauth'] = $_SESSION['user'];
         $data['judul'] = 'Home';
-
+        $this->view('components/navbar', $data);
         $this->view('home/index', $data);
+        $this->view('components/footer', $data);
     }
 
     public function addFavorite(){

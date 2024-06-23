@@ -8,7 +8,9 @@ class Keranjang extends Controller
             $data['userauth'] = $_SESSION['user'];
             $data['lists'] = $this->model('Menu_listing')->getAllOrderedItemByUserID($data['userauth']['id']);
             $data['judul'] = 'Keranjang';
+            $this->view('components/navbar', $data);
             $this->view('home/keranjang', $data);
+            $this->view('components/footer', $data);
         }else{
             header('location: ' . BASEURL . 'login');
         }

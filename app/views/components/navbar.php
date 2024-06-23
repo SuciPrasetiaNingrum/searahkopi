@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Searah Kopi | Home</title>
+    <title>Searah Kopi | <?= $data['judul']?></title>
+    <link rel="stylesheet" href="<?=BASEURL?>css/main.css">
+    <script src=" <?=BASEURL?>js/bootstrap.js"></script>
+    <script src=" <?=BASEURL?>js/bootstrap.bundle.min.js"></script>
+    <script src="<?=BASEURL?>/css/tiny-slider.css"></script>
 </head>
 <body>
     <!--Start Navbar-->
@@ -24,7 +28,7 @@
                             <a class="nav-link" href="<?= BASEURL ?>/home/">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?= BASEURL ?>/home/">Menu</a>
+                            <a class="nav-link" href="<?= BASEURL ?>/menu/">Menu</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="<?= BASEURL ?>/favorite/">Favorite</a>
@@ -72,5 +76,3 @@
         </div>
     </nav>
     <!--End Navbar-->
-</body>
-</html>

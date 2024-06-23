@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Searah Kopi | Home</title>
-</head>
-<body>
-    <!--Start Footer-->
+    <script src="<?=BASEURL?>js/tiny-slider.js"></script>
     <div class="footerContainer">
         <div class="row align-items-center text-center">
             <div class="col-12 py-2">
