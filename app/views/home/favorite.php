@@ -7,6 +7,7 @@
     <script src="<?= BASEURL ?>js/bootstrap.js"></script>
     <script src="<?= BASEURL ?>js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="<?= BASEURL ?>/css/tiny-slider.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
 <body>
 
@@ -72,6 +73,9 @@
     </nav>
     
     <div class="container mt-7">
+    <div class="flasher text-center">
+            <?php Flasher::flash()?>
+            </div>
         <h1 class="text-center mt-5 mb-4">Favorite</h1>
         
     <!--favorite 1-->
@@ -106,29 +110,40 @@ foreach ($data['lists'] as $list):
             </div>
         </div>
     </div>
+    
     <div class="col-4">
+           
         <div class="card border-width: 2px" style="width: 18rem;">
             <img src="../img/iklan-1.jpg" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title"><?= $list['nama_menu'] ?></h5>
                 <h5 class="card-title text-capitalize">Rp.<?= number_format($list['harga'], 0, ',', '.') ?></h5>
                 <p class="card-text"><?= substr($list['description'], 0, 50) . '...'; ?></p>
-
+                <div class="d-flex justify-content-center  ">
                 <form id="orderForm<?= $list['id'] ?>" method="POST">
                     <input type="hidden" value="<?= $_SESSION['user']['id'] ?>" name="id_user">
                     <input type="hidden" value="<?= $list['id'] ?>" name="id_menu">
                     <input type="hidden" value="1" name="amount">
-                    <button type="submit" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#staticBackdrop<?= $list['id'] ?>">
+                    <button type="submit" class="btn btn-warning btn-sm me-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop<?= $list['id'] ?>">
                         Order
                     </button>
-                    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modal<?= $list['id'] ?>">
+                </form>
+                     <button type="button" class="btn btn-primary btn-sm me-2" data-bs-toggle="modal" data-bs-target="#modal<?= $list['id'] ?>">
                         More
                     </button>
-                </form>
+                    <form action="<?= BASEURL ?>/favorite/delete" method="POST"> 
+                    <input type="hidden" value="<?= $list['id'] ?>" name="id">
+                    <button type="sumbit" class="btn btn-danger btn-sm ">
+                        Delete
+                    </button>
+                    </form>
+
+                </div>
+                
 
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+             
                 <style>
                     .heart {
                         cursor: pointer;

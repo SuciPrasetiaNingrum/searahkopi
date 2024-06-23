@@ -82,6 +82,9 @@
     <!-- Start Keranjang -->
     <div class="container mt-7">
     <div class="row">
+    <div class="flasher text-center">
+            <?php Flasher::flash()?>
+            </div>
         <div class="col">
             <?php if (empty($data['lists'])) : ?>
                 <div class="alert alert-warning" role="alert">
@@ -153,7 +156,12 @@
                     <td id="totalKeseluruhan">Rp.<?= number_format($totalKeseluruhan, 0, ',', '.') ?></td>
                 </tr>
                 <tr>
-                    <td colspan="2"><button class="btn btn-dark btn-sm">Checkout</button></td>
+                    
+                    <form action="<?=BASEURL?>keranjang/addPayment" method="POST">
+                        <input type="hidden" name="user_id" value="<?= $data['userauth']['id']?>">
+                        <input type="hidden" name="amount" value="<?= $totalKeseluruhan ?>">
+                    <td colspan="2"><button type="submit" class="btn btn-dark btn-sm">Checkout</button></td>
+                    </form>
                 </tr>
             </tbody>
         </table>
