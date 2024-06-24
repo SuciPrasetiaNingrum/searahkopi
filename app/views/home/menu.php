@@ -15,7 +15,7 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <img src="<?= BASEURL ?>/img/iklan-1.jpg" class="card-img-top" alt="catalogue-1">
+                                <img src="<?= BASEURL ?>/img/<?= $list['imagepath'] ?>" class="card-img-top" alt="catalogue-1">
                                     <p class="mt-5"><?= $list['description'] ?></p>
                                     <h5 class="card-title text-capitalize">Rp.<?= number_format($list['harga'], 0, ',', '.') ?></h5>
                                 </div>
@@ -27,7 +27,7 @@
                     </div>
                     <div class="col-md-3 col-6 mt-4">
                         <div class="card w-lg-16 w-md-14">
-                            <img src="<?= BASEURL ?>/img/iklan-1.jpg" class="card-img-top" alt="catalogue-1">
+                        <img src="<?= BASEURL ?>/img/<?= $list['imagepath'] ?>" class="card-img-top" alt="catalogue-1">
                             <div class="card-body">
                                 <h5 class="card-title text-capitalize"><?= $list['nama_menu'] ?></h5>
                                 <h5 class="card-title text-capitalize">Rp.<?= number_format($list['harga'], 0, ',', '.') ?></h5>
