@@ -29,7 +29,7 @@ class Menu_listing
 
     public function getAllOrderedItemByUserID($id)
     {
-        $this->db->query('SELECT COUNT(*) AS jumlah, k.id, m.nama_menu, m.harga, k.amount FROM ordered k JOIN menu m ON k.id_menu = m.id WHERE id_user = :id GROUP BY id_menu');
+        $this->db->query('SELECT COUNT(*) AS jumlah, k.id, m.nama_menu, m.harga, k.amount, m.imagepath FROM ordered k JOIN menu m ON k.id_menu = m.id WHERE id_user = :id GROUP BY id_menu');
         $this->db->bind('id', $id);
         $this->db->execute();
         return $this->db->resultSet();
@@ -53,7 +53,7 @@ class Menu_listing
         return $this->db->rowCount();
     }
     public function getAllFavorite($id){
-        $this->db->query('SELECT favorite.*,menu.nama_menu,menu.harga,menu.description FROM favorite JOIN menu ON menu.id = favorite.id_menu WHERE favorite.id_user =:id');
+        $this->db->query('SELECT favorite.*,menu.nama_menu,menu.harga,menu.description, menu.imagepath FROM favorite JOIN menu ON menu.id = favorite.id_menu WHERE favorite.id_user =:id');
         $this->db->bind('id', $id);
         $this->db->execute();
         return $this->db->resultSet();

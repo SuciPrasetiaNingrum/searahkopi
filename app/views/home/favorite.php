@@ -1,10 +1,8 @@
-
-    
     <div class="container mt-7">
     <div class="flasher text-center">
             <?php Flasher::flash()?>
-            </div>
-        <h1 class="text-center mt-5 mb-4">Favorite</h1>
+    </div>
+    <h1 class="text-center mt-5 mb-4">Favorite</h1>
         
     <!--favorite 1-->
     <div class="container text-center">
@@ -28,7 +26,7 @@ foreach ($data['lists'] as $list):
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <img src="<?= BASEURL ?>/img/iklan-1.jpg" class="card-img-top" alt="catalogue-1">
+                <img src="<?= BASEURL ?>/img/<?= $list['imagepath'] ?>" class="card-img-top" alt="catalogue-1">
                     <p class="mt-5"><?= $list['description'] ?></p>
                     <h5 class="card-title text-capitalize">Rp.<?= number_format($list['harga'], 0, ',', '.') ?></h5>
                 </div>
@@ -40,33 +38,32 @@ foreach ($data['lists'] as $list):
     </div>
     
     <div class="col-4">
-           
         <div class="card border-width: 2px" style="width: 18rem;">
-            <img src="../img/iklan-1.jpg" class="card-img-top" alt="...">
+            <img src="<?= BASEURL ?>/img/<?= $list['imagepath'] ?>" class="card-img-top" alt="catalogue-1">
             <div class="card-body">
                 <h5 class="card-title"><?= $list['nama_menu'] ?></h5>
                 <h5 class="card-title text-capitalize">Rp.<?= number_format($list['harga'], 0, ',', '.') ?></h5>
                 <p class="card-text"><?= substr($list['description'], 0, 50) . '...'; ?></p>
                 <div class="d-flex justify-content-center  ">
-                <form id="orderForm<?= $list['id'] ?>" method="POST">
-                    <input type="hidden" value="<?= $_SESSION['user']['id'] ?>" name="id_user">
-                    <input type="hidden" value="<?= $list['id'] ?>" name="id_menu">
-                    <input type="hidden" value="1" name="amount">
-                    <button type="submit" class="btn btn-warning btn-sm me-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop<?= $list['id'] ?>">
-                        Order
-                    </button>
-                </form>
-                     <button type="button" class="btn btn-primary btn-sm me-2" data-bs-toggle="modal" data-bs-target="#modal<?= $list['id'] ?>">
+                    <form id="orderForm<?= $list['id'] ?>" method="POST">
+                        <input type="hidden" value="<?= $_SESSION['user']['id'] ?>" name="id_user">
+                        <input type="hidden" value="<?= $list['id'] ?>" name="id_menu">
+                        <input type="hidden" value="1" name="amount">
+                        <button type="submit" class="btn btn-warning btn-sm me-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop<?= $list['id'] ?>">
+                            Order
+                        </button>
+                    </form>
+                    <button type="button" class="btn btn-primary btn-sm me-2" data-bs-toggle="modal" data-bs-target="#modal<?= $list['id'] ?>">
                         More
                     </button>
-                        <form action="<?= BASEURL ?>/favorite/delete" method="POST">
+                    <form action="<?= BASEURL ?>/favorite/delete" method="POST">
                         <input type="hidden" value="<?= $data['userauth']['id'] ?>" name="user_id"> 
                         <input type="hidden" value="<?= $list['id'] ?>" name="id">
                         <button type="sumbit" class="btn btn-danger btn-sm ">
                             Delete
-                    </button>
+                        </button>
                     </form>
-            </div>
+                </div>
                 
 
                 <meta charset="UTF-8">

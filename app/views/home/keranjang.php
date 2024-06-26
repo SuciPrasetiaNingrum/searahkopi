@@ -43,7 +43,7 @@
                                     </button>
                                 </th>
                                 <td><?= htmlspecialchars($list['nama_menu'], ENT_QUOTES, 'UTF-8') ?></td>
-                                <td><img src="<?= htmlspecialchars(BASEURL, ENT_QUOTES, 'UTF-8') ?>/img/iklan-1.jpg" width="60"></td>
+                                <td><img src="<?= htmlspecialchars(BASEURL, ENT_QUOTES, 'UTF-8') ?>/img/<?= htmlspecialchars($list['imagepath'], ENT_QUOTES, 'UTF-8') ?>" width="60"></td>
                                 <td>Rp.<?= number_format($list['harga'], 0, ',', '.') ?></td>
                                 <td>
                                     <!-- Tombol Kurang -->
