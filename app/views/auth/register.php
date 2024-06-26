@@ -16,7 +16,7 @@
             <div class="card-body">
                 <h1 class="card-title text-center">REGISTER</h1>
                 <?php Flasher::flash()?>
-            </div>
+          
             <?php if(Flasher::flash() == null):?>
             <div class="card-text">
                 <form action="<?=BASEURL?>/register/addUser" method="POST">
@@ -39,6 +39,7 @@
                 </form>
             </div>
             <?php endif?>
+            </div>
         </div>
     </div>
   </body>

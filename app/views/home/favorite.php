@@ -59,16 +59,14 @@ foreach ($data['lists'] as $list):
                      <button type="button" class="btn btn-primary btn-sm me-2" data-bs-toggle="modal" data-bs-target="#modal<?= $list['id'] ?>">
                         More
                     </button>
-                    <form action="<?= BASEURL ?>/favorite/delete" method="POST">
-                    <input type="hidden" value="<?= $data['userauth']['id'] ?>" name="user_id"> 
-                    <input type="hidden" value="<?= $list['id'] ?>" name="id">
-                    <button type="sumbit" class="btn btn-danger btn-sm ">
-                        Delete
+                        <form action="<?= BASEURL ?>/favorite/delete" method="POST">
+                        <input type="hidden" value="<?= $data['userauth']['id'] ?>" name="user_id"> 
+                        <input type="hidden" value="<?= $list['id'] ?>" name="id">
+                        <button type="sumbit" class="btn btn-danger btn-sm ">
+                            Delete
                     </button>
                     </form>
-                 
-
-                </div>
+            </div>
                 
 
                 <meta charset="UTF-8">

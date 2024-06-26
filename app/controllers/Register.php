@@ -2,7 +2,10 @@
 class Register extends Controller {
     public function index(){
         $data['judul'] = 'REGISTER | Searah Kopi';
-        $this->view('auth/register', $data);
+       
+        $this->view('components/navbar', $data);
+       $this->view('auth/register', $data);
+        $this->view('components/footer', $data);
     }
     public function addUser(){
         $result = $this->model('User_model')->register($_POST);

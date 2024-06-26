@@ -2,7 +2,9 @@
 class Login extends Controller{
     public function index(){
         $data['judul'] = 'LOGIN | Searah Kopi';
+        $this->view('components/navbar', $data);
         $this->view('auth/login', $data);
+        $this->view('components/footer', $data);
     }
     public function authenticate(){
 
