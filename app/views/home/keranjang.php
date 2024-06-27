@@ -28,7 +28,8 @@
                             <tr>
                                 <th scope="row">
                                     <!-- Tombol Hapus -->
-                                    <button class="btn btn-danger btn-sm" onclick="hapusItem(<?= $index ?>)">
+                                    <form action="<?=BASEURL?>keranjang/deleteKeranjang/<?=$list['id']?>" method="POST">
+                                        <button type="submit" class="btn btn-danger btn-sm">
                                         <svg width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                                             <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -40,17 +41,24 @@
                                                 <path d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
                                             </g>
                                         </svg>
-                                    </button>
+                                        </button>
+                                    </form>
                                 </th>
                                 <td><?= htmlspecialchars($list['nama_menu'], ENT_QUOTES, 'UTF-8') ?></td>
                                 <td><img src="<?= htmlspecialchars(BASEURL, ENT_QUOTES, 'UTF-8') ?>/img/<?= htmlspecialchars($list['imagepath'], ENT_QUOTES, 'UTF-8') ?>" width="60"></td>
                                 <td>Rp.<?= number_format($list['harga'], 0, ',', '.') ?></td>
                                 <td>
+                                    <div style="display: flex; gap: 5px;">
                                     <!-- Tombol Kurang -->
-                                    <button class="btn btn-dark btn-sm" onclick="kurangJumlah(<?= $index ?>)"><i class="fas fa-minus">-</i></button>
+                                    <form action="<?=BASEURL?>keranjang/trialQuantity/<?=$list['id']?>" method="post">
+                                        <button type="submit" class="btn btn-dark btn-sm"><i class="fas fa-minus">-</i></button>
+                                    </form>
                                     <span id="jumlah-<?= $index ?>" class="mx-2"><?= $list['jumlah'] ?></span>
                                     <!-- Tombol Tambah -->
-                                    <button class="btn btn-warning btn-sm" onclick="tambahJumlah(<?= $index ?>)"><i class="fas fa-plus text-white">+</i></button>
+                                    <form action="<?=BASEURL?>keranjang/plusQuantity/<?=$list['id']?>" method="post">
+                                        <button type="submit" class="btn btn-warning btn-sm"><i class="fas fa-plus text-white">+</i></button>
+                                    </form>
+                                    </div>
                                 </td>
                                 <td id="subtotal-<?= $index ?>">Rp.<?= number_format($list['jumlah'] * $list['harga'], 0, ',', '.') ?></td>
                             </tr>

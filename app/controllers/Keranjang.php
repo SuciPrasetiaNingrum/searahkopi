@@ -52,4 +52,38 @@ class Keranjang extends Controller
             exit;
         }
     }
+
+    public function deleteKeranjang($id){
+        if($this->model('Menu_listing')->deleteKeranjang($id) > 0){
+            Flasher::setFlash('Item berhasil ', 'dihapus', 'success');
+            header('location: ' . $_SERVER['HTTP_REFERER']);
+            exit;
+        }
+    }
+
+    public function minusQuantity($id){
+        if($this->model('Menu_listing')->minusQuantity($id) > 0){
+            header('location: ' . $_SERVER['HTTP_REFERER']);
+            exit;
+        }
+    } 
+
+    public function plusQuantity($id){
+        if($this->model('Menu_listing')->plusQuantity($id) > 0){
+            header('location: ' . $_SERVER['HTTP_REFERER']);
+            exit;
+        }
+    }
+
+    public function trialQuantity($id){
+        $item = $this->model('Menu_listing')->getItemById($id);
+        if ($item['amount'] == 1) {
+            $this->deleteKeranjang($id);
+        } else {
+            if($this->model('Menu_listing')->minusQuantity($id) > 0){
+                header('location: ' . $_SERVER['HTTP_REFERER']);
+                exit;
+            }
+        }
+    } 
 }

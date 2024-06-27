@@ -29,7 +29,7 @@ class Menu_listing
 
     public function getAllOrderedItemByUserID($id)
     {
-        $this->db->query('SELECT COUNT(*) AS jumlah, k.id, m.nama_menu, m.harga, k.amount, m.imagepath FROM ordered k JOIN menu m ON k.id_menu = m.id WHERE id_user = :id GROUP BY id_menu');
+        $this->db->query('SELECT SUM(amount) AS jumlah, k.id, m.nama_menu, m.harga, k.amount, m.imagepath FROM ordered k JOIN menu m ON k.id_menu = m.id WHERE id_user = :id GROUP BY id_menu');
         $this->db->bind('id', $id);
         $this->db->execute();
         return $this->db->resultSet();
@@ -73,5 +73,33 @@ class Menu_listing
         $this->db->bind('id_user', $data['user_id']);
         $this->db->execute();
         return $this->db->rowCount();
+    }
+
+    public function deleteKeranjang($id){
+        $this->db->query('DELETE FROM ordered WHERE id = :id');
+        $this->db->bind('id', $id);
+        $this->db->execute();
+        return $this->db->rowCount();
+    }
+
+    public function plusQuantity($id){
+        $this->db->query('UPDATE ordered SET amount = amount + 1 WHERE id = :id');
+        $this->db->bind('id', $id);
+        $this->db->execute();
+        return $this->db->rowCount();
+    }
+
+    public function minusQuantity($id){
+        $this->db->query('UPDATE ordered SET amount = amount - 1 WHERE id = :id');
+        $this->db->bind('id', $id);
+        $this->db->execute();
+        return $this->db->rowCount();
+    }
+
+    public function getItemById($id){
+        $this->db->query('SELECT * FROM ordered WHERE id = :id');
+        $this->db->bind('id', $id);
+        $this->db->execute();
+        return $this->db->single();
     }
 }
