@@ -28,7 +28,7 @@
                     <label for="password1" class="form-label">Password</label>
                     <input type="password" class="form-control" id="password1" name="password">
                   </div>
-                  <a class="text-danger" href="<?=BASEURL?>/register">Belum punya akun?</a>
+                  <a class="text-danger" href="<?=BASEURL?>/register">Don't have an account?</a>
                   <div class="d-grid gap-2">
                     <button type="submit" class="btn btn-primary">Log In</button>
                   </div>

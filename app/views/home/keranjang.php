@@ -1,27 +1,25 @@
-
-    <!-- Start Keranjang -->
-    <div class="container mt-7">
+<div class="container mt-7">
     <div class="row">
-    <div class="flasher text-center">
+        <div class="flasher text-center">
             <?php Flasher::flash()?>
-            </div>
+        </div>
+
         <div class="col">
             <?php if (empty($data['lists'])) : ?>
-                <div class="alert alert-warning" role="alert">
-                    Keranjang belanja Anda kosong.
-                </div>
+                <div class="alert alert-warning" role="alert"> Your cart is empty. </div>
             <?php else : ?>
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col">Hapus</th>
-                            <th scope="col">Nama Kopi</th>
-                            <th scope="col">Gambar</th>
-                            <th scope="col">Harga</th>
-                            <th scope="col">Jumlah</th>
+                            <th scope="col">Trash</th>
+                            <th scope="col">Coffee Name</th>
+                            <th scope="col">Picture</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Quantity</th>
                             <th scope="col">Sub Total</th>
                         </tr>
                     </thead>
+
                     <?php $totalKeseluruhan = 0; ?>
                     <?php foreach ($data['lists'] as $index => $list) : ?>
                         <tbody class="align-middle">
@@ -30,17 +28,17 @@
                                     <!-- Tombol Hapus -->
                                     <form action="<?=BASEURL?>keranjang/deleteKeranjang/<?=$list['id']?>" method="POST">
                                         <button type="submit" class="btn btn-danger btn-sm">
-                                        <svg width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                                            <g id="SVGRepo_iconCarrier">
-                                                <path d="M10 11V17" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                                <path d="M14 11V17" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                                <path d="M4 7H20" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                                <path d="M6 7H12H18V18C18 19.6569 16.6569 21 15 21H9C7.34315 21 6 19.6569 6 18V7Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                                <path d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                            </g>
-                                        </svg>
+                                            <svg width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                                <g id="SVGRepo_iconCarrier">
+                                                    <path d="M10 11V17" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                    <path d="M14 11V17" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                    <path d="M4 7H20" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                    <path d="M6 7H12H18V18C18 19.6569 16.6569 21 15 21H9C7.34315 21 6 19.6569 6 18V7Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                    <path d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                </g>
+                                            </svg>
                                         </button>
                                     </form>
                                 </th>
@@ -75,12 +73,12 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col" colspan="2">Total Keranjang Belanja</th>
+                    <th scope="col" colspan="2">Shopping Cart Total</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td class="fw-bold">Total Harga</td>
+                    <td class="fw-bold">Total Price</td>
                     <td id="totalKeseluruhan">Rp.<?= number_format($totalKeseluruhan, 0, ',', '.') ?></td>
                 </tr>
                 <tr>

@@ -52,7 +52,7 @@
                         <a class="nav-link" href="<?= BASEURL ?>/favorite/">Favorite</a>
                         </div>
                         <div class="col-sm-2 col-12">
-                        <a class="nav-link" href="<?= BASEURL ?>/keranjang/">Keranjang</a>
+                        <a class="nav-link" href="<?= BASEURL ?>/keranjang/">Cart</a>
                         </div>
                         <div class="col-sm-2 col-12">
                         <a class="nav-link" href="#location">Location</a>

@@ -16,6 +16,7 @@ class Keranjang extends Controller
         }
        
     }
+    
     public function addItem()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {

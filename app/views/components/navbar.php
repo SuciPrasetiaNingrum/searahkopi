@@ -34,7 +34,7 @@
                             <a class="nav-link" href="<?= BASEURL ?>/favorite/">Favorite</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?= BASEURL ?>/keranjang/">Keranjang</a>
+                            <a class="nav-link" href="<?= BASEURL ?>/keranjang/">Cart</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#location">Location</a>

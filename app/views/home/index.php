@@ -18,8 +18,8 @@
                             <div class="row justify-content-center align-items-center">
                                 <div class="col-md-7 text-md-start text-center px-5">
                                     <p class="text-uppercase fw-medium fs-5 text-white">—— 100% premium quality</p>
-                                    <p class="text-capitalize fw-semibold fs-1 text-white">brazilian sweet cappuccino</p>
-                                    <p class="text-base text-white">Premium coffee blends for everyone by labella.</p>
+                                    <p class="text-capitalize fw-semibold fs-1 text-white">strong expresso</p>
+                                    <p class="text-base text-white">Premium coffee blends for everyone by searah coffee.</p>
                                     <a class="btn btn-primary" href="#menu">Explore Now</a>
                                 </div>
                                 <div class="col-9 col-md-5">
@@ -36,8 +36,8 @@
                                 <div class="col-md-7 text-md-start text-center px-5">
                                     <p class="text-uppercase fw-medium fs-5 text-white">—— 100% premium quality</p>
                                     <p class="text-capitalize fw-semibold fs-1 text-white">sweet cappuccino</p>
-                                    <p class="text-base text-white">Premium coffee blends for everyone by labella.</p>
-                                    <a class="btn btn-primary" href="#" role="button">Explore Now</a>
+                                    <p class="text-base text-white">Premium coffee blends for everyone by searah coffee.</p>
+                                    <a class="btn btn-primary" href="#menu" role="button">Explore Now</a>
                                 </div>
                                 <div class="col-9 col-md-5">
                                     <img src="<?= BASEURL ?>/img/coffee-header-2.png" class="rounded float-end w-100 img-fluid" alt="">
@@ -52,9 +52,9 @@
                             <div class="row justify-content-center align-items-center">
                                 <div class="col-md-7 text-md-start text-center px-5">
                                     <p class="text-uppercase fw-medium fs-5 text-white">—— 100% premium quality</p>
-                                    <p class="text-capitalize fw-semibold fs-1 text-white">cappuccino</p>
-                                    <p class="text-base text-white">Premium coffee blends for everyone by labella.</p>
-                                    <a class="btn btn-primary" href="#" role="button">Explore Now</a>
+                                    <p class="text-capitalize fw-semibold fs-1 text-white">americano</p>
+                                    <p class="text-base text-white">Premium coffee blends for everyone by searah coffee.</p>
+                                    <a class="btn btn-primary" href="#menu" role="button">Explore Now</a>
                                 </div>
                                 <div class="col-9 col-md-5">
                                     <img src="<?= BASEURL ?>/img/coffee-header-2.png" class="rounded float-end w-100 img-fluid" alt="">
@@ -189,7 +189,7 @@
         <!--Iklan-->
         <h4 id="promo"></h4>
         <div class="container text-center pt-5">
-            <p class="text-capitalize fs-3 fw-semibold">promo terbatas ramadhan</p>
+            <p class="text-capitalize fs-3 fw-semibold">special ramadhan promo</p>
         </div>
         <div class="container text-center pt-4">
             <div class="row align-items-center">
@@ -373,7 +373,7 @@ $(document).ready(function() {
             success: function(response) {
                 // Lakukan sesuatu setelah sukses
                 console.log(response);
-                alert('Item berhasil ditambahkan ke keranjang.');
+                alert('Item added successfully.');
             },
             error: function(xhr, status, error) {
                 // Tangani kesalahan
@@ -427,7 +427,7 @@ $(document).ready(function() {
             success: function(response) {
                 // Lakukan sesuatu setelah sukses
                 console.log(response);
-                alert('Item berhasil ditambahkan ke favorit.');
+                alert('Item added successfully to favorites.');
             },
             error: function(xhr, status, error) {
                 // Tangani kesalahan
